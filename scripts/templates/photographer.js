@@ -1,19 +1,46 @@
 function photographerTemplate(data) {
-    const { name, portrait } = data;
+    const { name, portrait, city, country, tagline, price } = data;
 
     const picture = `assets/photographers/${portrait}`;
 
     function getUserCardDOM() {
-        const article = document.createElement( 'article' );
+        const a = document.createElement( 'a' );
+        a.className = "card";
+        a.href = "#";
+
         const img = document.createElement( 'img' );
-        img.setAttribute("src", picture);
-        img.setAttribute("alt", name);
+        img.className = "card__img";
+        img.src = picture;
+        img.alt = name;
+
+        const div = document.createElement('div');
+        div.className = "card__content";
+
         const h2 = document.createElement( 'h2' );
+        h2.className = "card__title";
         h2.textContent = name;
-        article.appendChild(img);
-        article.appendChild(h2);
-        return (article);
+
+        const h3 = document.createElement( 'h3' );
+        h3.className = "card__location";
+        h3.textContent = `${city}, ${country}`;
+
+        const p = document.createElement( 'p' );
+        h2.className = "card__tagline";
+        p.textContent = tagline;
+
+        const span = document.createElement( 'span' );
+        span.className = "card__price";
+        span.textContent = `${price}€/jour`;
+
+        div.appendChild(h2);
+        div.appendChild(h3);
+        div.appendChild(p);
+        div.appendChild(span);
+        a.appendChild(img);
+        a.appendChild(div);
+
+        return (a);
     }
 
-    return { name, picture, getUserCardDOM }
+    return { name, picture, city, country, tagline, price, getUserCardDOM }
 }
