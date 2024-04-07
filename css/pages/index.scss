@@ -1,0 +1,54 @@
+@import './../base/style.css';
+
+.photographer_section{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 70px;
+    margin-top: 56px;
+
+    .card{
+        justify-self: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px;
+
+        &__content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            line-height: unset;
+            gap: 2px;
+        }
+
+        &__img{
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        &__title{
+            color: #D3573C;
+            font-size: 32px;
+            font-weight: 400;
+        }
+
+        &__location{
+            color: #901C1C;
+            font-size: 16px;
+            font-weight: 400;
+        }
+
+        &__tagline{
+            font-size: 14px;
+        }
+
+        &__price{
+            color: #757575;
+            font-size: 12px;
+        }
+    }
+}

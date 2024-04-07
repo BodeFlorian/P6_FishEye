@@ -1,0 +1,40 @@
+@import './../layout/header.css';
+:root {
+  --paddingPage: 1.25rem;
+  --backgroundColor: #f6f6f6;
+  --mainColor: #9356DC;
+  --secondColor: #FF79DA;
+  --accentColor: #99E2D0;
+  --greenFontColor: #008766;
+  --footerColor: #353535;
+  --mainColorRgb: 147, 86, 220;
+  --secondColorRgb: 255, 121, 218;
+  --xs-sizing: 0.5rem;
+  --s-sizing: 1rem;
+  --m-sizing: 1.5rem;
+  --l-sizing: 2rem;
+  --xl-sizing: 4rem;
+  --xxl-sizing: 8rem;
+  --section-title: 1.5rem;
+  --paragraph: 1.125rem;
+  --button: 1rem;
+  --price-menu: 0.938rem;
+  --title-menu: 1.125rem;
+  --details-menu: 0.938rem;
+  --delay: 0.25s;
+}
+
+* {
+  margin: 0 0;
+  padding: 0 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: unset;
+}/*# sourceMappingURL=style.css.map */

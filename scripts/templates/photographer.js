@@ -25,7 +25,7 @@ function photographerTemplate(data) {
         h3.textContent = `${city}, ${country}`;
 
         const p = document.createElement( 'p' );
-        h2.className = "card__tagline";
+        p.className = "card__tagline";
         p.textContent = tagline;
 
         const span = document.createElement( 'span' );

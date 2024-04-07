@@ -1,0 +1,47 @@
+@import './../base/style.css';
+.photographer_section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 70px;
+  margin-top: 56px;
+}
+.photographer_section .card {
+  justify-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 8px;
+}
+.photographer_section .card__content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  line-height: unset;
+  gap: 2px;
+}
+.photographer_section .card__img {
+  height: 200px;
+  width: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+.photographer_section .card__title {
+  color: #D3573C;
+  font-size: 32px;
+  font-weight: 400;
+}
+.photographer_section .card__location {
+  color: #901C1C;
+  font-size: 16px;
+  font-weight: 400;
+}
+.photographer_section .card__tagline {
+  font-size: 14px;
+}
+.photographer_section .card__price {
+  color: #757575;
+  font-size: 12px;
+}/*# sourceMappingURL=index.css.map */
