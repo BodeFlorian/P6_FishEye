@@ -2,9 +2,9 @@
 
 .photographer_section{
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 70px;
-    margin-top: 56px;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 64px;
+    margin-top: 32px;
 
     .card{
         justify-self: center;
