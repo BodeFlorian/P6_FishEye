@@ -1,7 +1,7 @@
 @import './../base/style.css';
 .photograph-header {
   background-color: #FAFAFA;
-  margin: 0 100px;
+  margin: 0 96px;
 }
 
 .contact_button {
@@ -95,4 +95,25 @@ form input {
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+
+.photograph-media {
+  margin: 64px 96px;
+}
+.photograph-media .sort label {
+  font-weight: bold;
+}
+.photograph-media .sort #sort {
+  margin-left: 8px;
+  outline: none;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  background-color: #901C1C;
+  padding: 12px 16px;
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  cursor: pointer;
 }/*# sourceMappingURL=photographer.css.map */

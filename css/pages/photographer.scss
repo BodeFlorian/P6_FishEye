@@ -2,7 +2,7 @@
 
 .photograph-header {
     background-color: #FAFAFA;
-    margin: 0 100px;
+    margin: 0 96px;
 }
 
 .contact_button {
@@ -107,5 +107,28 @@ form {
         width: 200px;
         object-fit: cover;
         border-radius: 50%;
+    }
+}
+
+.photograph-media{
+    margin: 64px 96px;
+
+    .sort{
+        label{
+            font-weight: bold;
+        }
+
+        #sort {
+            margin-left: 8px;
+            outline: none;
+            appearance: none;
+            background-color: #901C1C;
+            padding: 12px 16px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            font-size: 16px;
+            cursor: pointer;
+        }
     }
 }
