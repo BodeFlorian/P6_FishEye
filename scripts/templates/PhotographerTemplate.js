@@ -28,23 +28,23 @@ class PhotographerTemplate {
         return article;
     }
 
-    getUserBannerDOM(ariaLabel = '') {
-        const article = this.#createArticle("card", ariaLabel);
-        const img = this.#createImage(this._photographer.picture, "card__img", this._photographer.name);
-        const div = this.#createDivElement("card__content");
-        const h2 = this.#createHeadingElement("h2", "card__title", this._photographer.name);
-        const h3 = this.#createHeadingElement("h3", "card__location", `${this._photographer.city}, ${this._photographer.country}`);
+    getUserBannerDOM() {
+        const banner = this.#createDivElement("banner");
+        const div = this.#createDivElement("card");
+        const h1 = this.#createHeadingElement("h2", "card__title", this._photographer.name);
+        const h2 = this.#createHeadingElement("h3", "card__location", `${this._photographer.city}, ${this._photographer.country}`);
         const p = this.#createParagraphElement("card__tagline", this._photographer.tagline);
-        const span = this.#createSpanElement("card__price", `${this._photographer.price}€/jour`);
+        const button = this.#createButtonElement("contact_button", "Contactez-moi", "Contact button");
+        const img = this.#createImage(this._photographer.picture, "photographer__img", this._photographer.name);
 
+        div.appendChild(h1);
         div.appendChild(h2);
-        div.appendChild(h3);
         div.appendChild(p);
-        div.appendChild(span);
-        article.appendChild(img);
-        article.appendChild(div);
+        banner.appendChild(div);
+        banner.appendChild(button);
+        banner.appendChild(img);
 
-        return article;
+        return banner;
     }
 
     #createArticle(className, ariaLabel) {
@@ -96,6 +96,15 @@ class PhotographerTemplate {
         span.className = className;
         span.textContent = textContent;
         return span;
+    }
+
+    #createButtonElement(className, textContent, ariaLabel) {
+        const button = document.createElement('button');
+        button.className = className;
+        button.textContent = textContent;
+        button.ariaLabel = ariaLabel;
+        button.onclick = displayModal
+        return button;
     }
 }
 
