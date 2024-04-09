@@ -7,6 +7,9 @@
     margin-top: 32px;
 
     .card{
+        width: fit-content;
+        margin: auto;
+
         &__link{
             justify-self: center;
             display: flex;
