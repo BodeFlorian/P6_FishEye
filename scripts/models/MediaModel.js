@@ -38,7 +38,13 @@ export class ImageModel extends MediaModel {
     constructor(data, photographer) {
         super(data, photographer);
         const { image } = data;
-        this._url = image;
+        const [firstName, ...lastName] = this._photographer.name.split(' ');
+        this._type = "image";
+        this._url = `./assets/images/${firstName}/${image}`;
+    }
+
+    get type() {
+        return this._type;
     }
 
     get url() {
@@ -50,7 +56,13 @@ export class VideoModel extends MediaModel {
     constructor(data, photographer) {
         super(data, photographer);
         const { video } = data;
-        this._url = video;
+        const [firstName, ...lastName] = this._photographer.name.split(' ');
+        this._type = "video";
+        this._url = `./assets/images/${firstName}/${video}`;
+    }
+
+    get type() {
+        return this._type;
     }
 
     get url() {
