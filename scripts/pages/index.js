@@ -1,18 +1,6 @@
 import PhotographerModel from "../models/PhotographerModel.js";
 import PhotographerTemplate from "../templates/PhotographerTemplate.js";
-
-async function getPhotographers() {
-    try {
-        const response = await fetch('./../../data/photographers.json');
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        const data = await response.json();
-        return data['photographers'];
-    } catch (error) {
-        console.error('Error fetching photographers data:', error);
-    }
-}
+import { PhotographerApi } from "../api/Api.js";
 
 async function displayData(photographers) {
     const photographersSection = document.querySelector(".photographer_section");
@@ -26,10 +14,11 @@ async function displayData(photographers) {
 }
 
 async function init() {
-    const photographers = await getPhotographers();
+    const photographerApi = new PhotographerApi('./../../data/photographers.json');
+    const photographers = await photographerApi.getPhotographers();
 
     if (photographers) {
-        displayData(photographers);
+        displayData(photographers['photographers']);
     }
 }
 

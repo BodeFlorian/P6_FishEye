@@ -11,6 +11,7 @@ class PhotographerTemplate {
         const a = document.createElement( 'a' );
         a.className = "card";
         a.href = `./photographer.html?id=${this._photographer.id}`;
+        a.ariaLabel = "Redirect to the photographer's page";
 
         const img = document.createElement( 'img' );
         img.className = "card__img";
