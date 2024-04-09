@@ -1,8 +1,8 @@
 class MediaModel {
     constructor(data){
-        const { id, photographerId, title, likes, date, price } = data;
+        const { id, photographer, title, likes, date, price } = data;
         this._id = id;
-        this._photographerId = photographerId;
+        this._photographer = photographer;
         this._title = title;
         this._likes = likes;
         this._date = date;
