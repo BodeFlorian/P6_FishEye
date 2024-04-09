@@ -5,7 +5,7 @@ import { PhotographerApi } from "../api/Api.js";
 const params = new URL(document.location).searchParams;
 const id = params.get("id");
 
-async function displayData(photographer) {
+function displayPhotographer(photographer) {
     const photographerSection = document.querySelector(".photograph-header");
     const photographerTemplate = new PhotographerTemplate(photographer);
     const userBannerDOM = photographerTemplate.getUserBannerDOM();
@@ -15,11 +15,13 @@ async function displayData(photographer) {
 async function init() {
     const photographerApi = new PhotographerApi('./../../data/photographers.json');
     const photographers = await photographerApi.getPhotographers();
-    const photographerData = photographers['photographers'].find(photographer => photographer.id === parseInt(id));
+    const photographerData = photographers['photographers'].find((photographer) => photographer.id === parseInt(id));
 
     if (photographerData) {
         const photographerModel = new PhotographerModel(photographerData);
-        displayData(photographerModel);
+        const mediaData = await photographerModel.getMedia();
+
+        displayPhotographer(photographerModel);
     } else {
         window.location.href = './index.html';
     }

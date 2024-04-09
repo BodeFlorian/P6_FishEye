@@ -1,6 +1,6 @@
 class MediaModel {
-    constructor(data){
-        const { id, photographer, title, likes, date, price } = data;
+    constructor(data, photographer){
+        const { id, title, likes, date, price } = data;
         this._id = id;
         this._photographer = photographer;
         this._title = title;
@@ -13,8 +13,8 @@ class MediaModel {
         return this._id;
     }
 
-    get photographerId() {
-        return this._photographerId;
+    get photographer() {
+        return this._photographer;
     }
 
     get title() {
@@ -34,26 +34,28 @@ class MediaModel {
     }
 }
 
-class ImageModel extends MediaModel {
-    constructor(data) {
-        super(data);
+export class ImageModel extends MediaModel {
+    constructor(data, photographer) {
+        super(data, photographer);
         const { image } = data;
-        this._image = image;
+        this._url = image;
     }
 
-    get image() {
-        return this._image;
+    get url() {
+        return this._url;
     }
 }
 
-class VideoModel extends MediaModel {
-    constructor(data) {
-        super(data);
+export class VideoModel extends MediaModel {
+    constructor(data, photographer) {
+        super(data, photographer);
         const { video } = data;
-        this._video = video;
+        this._url = video;
     }
 
-    get video() {
-        return this._video;
+    get url() {
+        return this._url;
     }
 }
+
+export default { ImageModel, VideoModel };

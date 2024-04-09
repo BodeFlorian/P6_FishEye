@@ -1,3 +1,6 @@
+import { PhotographerApi } from "../api/Api.js";
+import MediaFactory  from "./../factories/MediaFactory.js";
+
 class PhotographerModel {
     constructor(data){
         const { id, name, portrait, city, country, tagline, price } = data;
@@ -37,6 +40,19 @@ class PhotographerModel {
     get price() {
         return this._price;
     }
+
+    async getMedia() {
+        const photographerApi = new PhotographerApi('./../../data/photographers.json');
+        const photographers = await photographerApi.getPhotographers();
+        const mediaData = photographers['media'].filter((media) => media.photographerId === this._id);
+
+        const mediaObjects = mediaData.map((mediaItem) => {
+            return MediaFactory.createMedia(mediaItem, this);
+        });
+
+        return mediaObjects;
+    }
+
 }
 
 export default PhotographerModel;
