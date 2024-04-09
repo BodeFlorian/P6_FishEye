@@ -1,5 +1,5 @@
 class PhotographerTemplate {
-    constructor(photographer){
+    constructor(photographer) {
         this._photographer = photographer;
     }
 
@@ -7,35 +7,15 @@ class PhotographerTemplate {
         return this._photographer;
     }
 
-    getUserCardDOM() {
-        const a = document.createElement( 'a' );
-        a.className = "card";
-        a.href = `./photographer.html?id=${this._photographer.id}`;
-        a.ariaLabel = "Redirect to the photographer's page";
-
-        const img = document.createElement( 'img' );
-        img.className = "card__img";
-        img.src = `${this._photographer.picture}`;
-        img.alt = `${this._photographer.name}`;
-
-        const div = document.createElement('div');
-        div.className = "card__content";
-
-        const h2 = document.createElement( 'h2' );
-        h2.className = "card__title";
-        h2.textContent = `${this._photographer.name}`;
-
-        const h3 = document.createElement( 'h3' );
-        h3.className = "card__location";
-        h3.textContent = `${this._photographer.city}, ${this._photographer.country}`;
-
-        const p = document.createElement( 'p' );
-        p.className = "card__tagline";
-        p.textContent = `${this._photographer.tagline}`;
-
-        const span = document.createElement( 'span' );
-        span.className = "card__price";
-        span.textContent = `${this._photographer.price}€/jour`;
+    getUserCardDOM(ariaLabel = '') {
+        const article = this.#createArticle("card", ariaLabel);
+        const a = this.#createLink(`./photographer.html?id=${this._photographer.id}`, "card__link");
+        const img = this.#createImage(this._photographer.picture, "card__img", this._photographer.name);
+        const div = this.#createDivElement("card__content");
+        const h2 = this.#createHeadingElement("h2", "card__title", this._photographer.name);
+        const h3 = this.#createHeadingElement("h3", "card__location", `${this._photographer.city}, ${this._photographer.country}`);
+        const p = this.#createParagraphElement("card__tagline", this._photographer.tagline);
+        const span = this.#createSpanElement("card__price", `${this._photographer.price}€/jour`);
 
         div.appendChild(h2);
         div.appendChild(h3);
@@ -43,8 +23,79 @@ class PhotographerTemplate {
         div.appendChild(span);
         a.appendChild(img);
         a.appendChild(div);
+        article.appendChild(a);
 
-        return (a);
+        return article;
+    }
+
+    getUserBannerDOM(ariaLabel = '') {
+        const article = this.#createArticle("card", ariaLabel);
+        const img = this.#createImage(this._photographer.picture, "card__img", this._photographer.name);
+        const div = this.#createDivElement("card__content");
+        const h2 = this.#createHeadingElement("h2", "card__title", this._photographer.name);
+        const h3 = this.#createHeadingElement("h3", "card__location", `${this._photographer.city}, ${this._photographer.country}`);
+        const p = this.#createParagraphElement("card__tagline", this._photographer.tagline);
+        const span = this.#createSpanElement("card__price", `${this._photographer.price}€/jour`);
+
+        div.appendChild(h2);
+        div.appendChild(h3);
+        div.appendChild(p);
+        div.appendChild(span);
+        article.appendChild(img);
+        article.appendChild(div);
+
+        return article;
+    }
+
+    #createArticle(className, ariaLabel) {
+        const article = document.createElement('article');
+        article.className = className;
+        if (ariaLabel) {
+            article.ariaLabel = ariaLabel;
+        }
+        return article;
+    }
+
+    #createLink(href, className) {
+        const link = document.createElement('a');
+        link.className = className;
+        link.href = href;
+        return link;
+    }
+
+    #createImage(src, className, alt) {
+        const img = document.createElement('img');
+        img.className = className;
+        img.src = src;
+        img.alt = alt;
+        return img;
+    }
+
+    #createDivElement(className) {
+        const div = document.createElement('div');
+        div.className = className;
+        return div;
+    }
+
+    #createHeadingElement(tagName, className, textContent) {
+        const heading = document.createElement(tagName);
+        heading.className = className;
+        heading.textContent = textContent;
+        return heading;
+    }
+
+    #createParagraphElement(className, textContent) {
+        const paragraph = document.createElement('p');
+        paragraph.className = className;
+        paragraph.textContent = textContent;
+        return paragraph;
+    }
+
+    #createSpanElement(className, textContent) {
+        const span = document.createElement('span');
+        span.className = className;
+        span.textContent = textContent;
+        return span;
     }
 }
 

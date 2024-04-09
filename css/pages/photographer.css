@@ -18,7 +18,10 @@
   cursor: pointer;
 }
 
-.modal {
+#contact_modal {
+  display: none;
+}
+#contact_modal .modal {
   border-radius: 5px;
   background-color: #DB8876;
   width: 50%;
@@ -29,14 +32,14 @@
   padding: 35px;
   margin: auto;
 }
-.modal header {
+#contact_modal .modal header {
   justify-content: space-between;
   width: 100%;
 }
-.modal header img {
+#contact_modal .modal header img {
   cursor: pointer;
 }
-.modal header h2 {
+#contact_modal .modal header h2 {
   font-size: 64px;
   font-weight: normal;
   text-align: center;

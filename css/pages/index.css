@@ -5,7 +5,7 @@
   gap: 64px;
   margin-top: 32px;
 }
-.photographer_section .card {
+.photographer_section .card__link {
   justify-self: center;
   display: flex;
   justify-content: center;
