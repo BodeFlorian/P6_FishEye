@@ -3,6 +3,50 @@
 .photograph-header {
     background-color: #FAFAFA;
     margin: 0 96px;
+
+    .banner{
+        padding: 32px 80px;
+        background-color: #FAFAFA;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .card{
+            &__title{
+                color: #D3573C;
+                font-size: 32px;
+                font-weight: 400;
+            }
+
+            &__location{
+                color: #901C1C;
+                font-size: 16px;
+                font-weight: 400;
+                margin-bottom: 16px;
+            }
+
+            &__tagline{
+                font-size: 14px;
+            }
+        }
+
+        .photographer__img{
+            height: 200px;
+            width: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+    }
+
+    .skeleton-banner{
+        padding: 32px 80px;
+        background-color: #cccbcb;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        min-height: 200px;
+        animation: pulse 1s infinite alternate;
+    }
 }
 
 .contact_button {
@@ -73,40 +117,6 @@ form {
         height: 68px;
         border: none;
         border-radius: 5px;
-    }
-}
-
-.banner{
-    padding: 32px 80px;
-    background-color: #FAFAFA;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
-    .card{
-        &__title{
-            color: #D3573C;
-            font-size: 32px;
-            font-weight: 400;
-        }
-
-        &__location{
-            color: #901C1C;
-            font-size: 16px;
-            font-weight: 400;
-            margin-bottom: 16px;
-        }
-
-        &__tagline{
-            font-size: 14px;
-        }
-    }
-
-    .photographer__img{
-        height: 200px;
-        width: 200px;
-        object-fit: cover;
-        border-radius: 50%;
     }
 }
 
@@ -195,14 +205,14 @@ form {
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             animation: pulse 1s infinite alternate;
         }
+    }
+}
 
-        @keyframes pulse {
-            0% {
-                opacity: 0.5;
-            }
-            100% {
-                opacity: 1;
-            }
-        }
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
     }
 }

@@ -55,11 +55,30 @@ const displayMedia = async (medias) => {
 };
 
 // Fonction pour afficher les informations du photographe
-const displayPhotographer = (photographer) => {
+const displayPhotographer = async (photographer) => {
     const photographerSection = document.querySelector(".photograph-header");
     const photographerTemplate = new PhotographerTemplate(photographer);
     const userBannerDOM = photographerTemplate.getUserBannerDOM();
-    photographerSection.appendChild(userBannerDOM);
+    const skeletonBanner = document.querySelector(".skeleton-banner");
+
+    // Vérifier si les éléments nécessaires sont présents dans userBannerDOM
+    const elementsPresent = userBannerDOM.querySelector(".card__title") &&
+                            userBannerDOM.querySelector(".card__location") &&
+                            userBannerDOM.querySelector(".card__tagline") &&
+                            userBannerDOM.querySelector(".contact_button") &&
+                            userBannerDOM.querySelector(".photographer__img");
+
+    try {
+        // Attendre que les éléments nécessaires soient présents dans userBannerDOM
+        if (elementsPresent) {
+            skeletonBanner.remove();
+            photographerSection.appendChild(userBannerDOM);
+        } else {
+            console.warn("Some elements are missing in userBannerDOM. Check getUserBannerDOM implementation.");
+        }
+    } catch (error) {
+        console.error("An error occurred while loading photographer data:", error);
+    }
 };
 
 // Fonction d'initialisation
