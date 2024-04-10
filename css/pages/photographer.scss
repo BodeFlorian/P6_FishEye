@@ -136,7 +136,7 @@ form {
 
     .media {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
         gap: 64px;
 
         .media-card {
@@ -190,7 +190,7 @@ form {
             height: 100%;
             aspect-ratio: 1;
             padding-top: 100%;
-            background-color: #dfdede;
+            background-color: #cccbcb;
             border-radius: 5px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             animation: pulse 1s infinite alternate;
