@@ -1,5 +1,7 @@
+// Définition de la classe de base pour tous les types de médias
 class MediaModel {
-    constructor(data, photographer){
+    constructor(data, photographer) {
+        // Extraction des données communes à tous les types de médias
         const { id, title, likes, date, price } = data;
         this._id = id;
         this._photographer = photographer;
@@ -9,6 +11,7 @@ class MediaModel {
         this._price = price;
     }
 
+    // Getters pour accéder aux propriétés communes à tous les types de médias
     get id() {
         return this._id;
     }
@@ -34,40 +37,49 @@ class MediaModel {
     }
 }
 
-export class ImageModel extends MediaModel {
+// Classe pour représenter un média de type image
+class ImageModel extends MediaModel {
     constructor(data, photographer) {
         super(data, photographer);
         const { image } = data;
-        const [firstName, ...lastName] = this._photographer.name.split(' ');
+        // Génération de l'URL de l'image en fonction du photographe et du nom du fichier
+        const [firstName] = this._photographer.name.split(' ');
         this._type = "image";
         this._url = `./assets/images/${firstName}/${image}`;
     }
 
+    // Getter spécifique pour le type de média (image)
     get type() {
         return this._type;
     }
 
+    // Getter pour l'URL de l'image
     get url() {
         return this._url;
     }
 }
 
-export class VideoModel extends MediaModel {
+// Classe pour représenter un média de type vidéo
+class VideoModel extends MediaModel {
     constructor(data, photographer) {
         super(data, photographer);
         const { video } = data;
-        const [firstName, ...lastName] = this._photographer.name.split(' ');
+        // Génération de l'URL de la vidéo en fonction du photographe et du nom du fichier
+        const [firstName] = this._photographer.name.split(' ');
         this._type = "video";
         this._url = `./assets/images/${firstName}/${video}`;
     }
 
+    // Getter spécifique pour le type de média (vidéo)
     get type() {
         return this._type;
     }
 
+    // Getter pour l'URL de la vidéo
     get url() {
         return this._url;
     }
 }
 
-export default { ImageModel, VideoModel };
+// Export des classes ImageModel et VideoModel
+export { ImageModel, VideoModel };
