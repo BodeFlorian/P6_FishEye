@@ -3,9 +3,37 @@ import PhotographerTemplate from "../templates/PhotographerTemplate.js";
 import MediaTemplate from "../templates/MediaTemplate.js";
 import { PhotographerApi } from "../api/Api.js";
 
-// Extraction de l'ID du photographe de l'URL
 const params = new URL(document.location).searchParams;
 const id = params.get("id");
+const sortSelect = document.getElementById('sort');
+
+let mediaData;
+
+/**
+ * Trie les médias en fonction du critère de tri spécifié.
+ * @param {string} sortBy - Le critère de tri (popularity, date, title).
+ * @param {Array} mediaData - Les données des médias à trier.
+ * @returns {void}
+ */
+const sortMediaBy = (sortBy, mediaData) => {
+    let sortedMedia;
+    switch (sortBy) {
+        case 'popularity':
+            sortedMedia = mediaData.slice().sort((a, b) => b.likes - a.likes);
+            break;
+        case 'date':
+            sortedMedia = mediaData.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
+            break;
+        case 'title':
+            sortedMedia = mediaData.slice().sort((a, b) => a.title.localeCompare(b.title));
+            break;
+        default:
+            sortedMedia = mediaData;
+            break;
+    }
+
+    displayMedia(sortedMedia);
+};
 
 /**
  * Affiche les médias du photographe en générant et en ajoutant les éléments au DOM.
@@ -14,12 +42,19 @@ const id = params.get("id");
  */
 const displayMedia = async (medias) => {
     const mediaSection = document.querySelector(".media");
+    const existingMedia = document.querySelectorAll(".media-card");
     const skeleton = document.querySelectorAll(".skeleton-card");
+
+    if (existingMedia.length > 0) {
+        skeleton.forEach((skeletonCard) => {
+            skeletonCard.style.display = "block";
+        });
+    }
+    existingMedia.forEach(media => media.remove());
 
     const promises = [];
     const mediaItems = [];
 
-    // Parcours des médias pour les afficher
     medias.forEach((media) => {
         switch (media.type) {
             case "image":
@@ -51,17 +86,16 @@ const displayMedia = async (medias) => {
         }
     });
 
-    // Attente que toutes les promesses se réalisent
     try {
         await Promise.all(promises);
         skeleton.forEach((skeletonCard) => {
-            skeletonCard.remove();
+            skeletonCard.style.display = "none";
         });
         mediaItems.forEach((mediaItem) => {
             mediaSection.appendChild(mediaItem);
         });
     } catch (error) {
-        console.error("An error occurred while loading images.");
+        console.error("An error occurred while loading media.");
     }
 };
 
@@ -76,7 +110,6 @@ const displayPhotographer = async (photographer) => {
     const userBannerDOM = photographerTemplate.getUserBannerDOM();
     const skeletonBanner = document.querySelector(".skeleton-banner");
 
-    // Vérifier si les éléments nécessaires sont présents dans userBannerDOM
     const elementsPresent = userBannerDOM.querySelector(".card__title") &&
                             userBannerDOM.querySelector(".card__location") &&
                             userBannerDOM.querySelector(".card__tagline") &&
@@ -84,7 +117,6 @@ const displayPhotographer = async (photographer) => {
                             userBannerDOM.querySelector(".photographer__img");
 
     try {
-        // Attendre que les éléments nécessaires soient présents dans userBannerDOM
         if (elementsPresent) {
             skeletonBanner.remove();
             photographerSection.appendChild(userBannerDOM);
@@ -107,12 +139,11 @@ async function init() {
         const photographerData = photographers['photographers'].find((photographer) => photographer.id === parseInt(id));
 
         if (photographerData) {
-            // Création du modèle de photographe et récupération de ses médias
             const photographerModel = new PhotographerModel(photographerData);
-            const mediaData = await photographerModel.getMedia();
-            // Affichage des informations du photographe et de ses médias
+            mediaData = await photographerModel.getMedia();
+
             displayPhotographer(photographerModel);
-            displayMedia(mediaData);
+            sortMediaBy('popularity', mediaData);
         } else {
             // Redirection vers la page d'accueil si le photographe n'existe pas
             window.location.href = './index.html';
@@ -123,3 +154,8 @@ async function init() {
 }
 
 init();
+
+sortSelect.addEventListener('change', () => {
+    const sortBy = sortSelect.value;
+    sortMediaBy(sortBy, mediaData);
+});
