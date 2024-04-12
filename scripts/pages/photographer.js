@@ -1,4 +1,3 @@
-// Import des modules nécessaires
 import PhotographerModel from "../models/PhotographerModel.js";
 import PhotographerTemplate from "../templates/PhotographerTemplate.js";
 import MediaTemplate from "../templates/MediaTemplate.js";
@@ -8,7 +7,11 @@ import { PhotographerApi } from "../api/Api.js";
 const params = new URL(document.location).searchParams;
 const id = params.get("id");
 
-// Fonction pour afficher les médias du photographe
+/**
+ * Affiche les médias du photographe en générant et en ajoutant les éléments au DOM.
+ * @param {Array} medias - Les données des médias à afficher.
+ * @returns {void}
+ */
 const displayMedia = async (medias) => {
     const mediaSection = document.querySelector(".media");
     const skeleton = document.querySelectorAll(".skeleton-card");
@@ -54,7 +57,11 @@ const displayMedia = async (medias) => {
     }
 };
 
-// Fonction pour afficher les informations du photographe
+/**
+ * Affiche les informations du photographe en générant et en ajoutant les éléments au DOM.
+ * @param {Object} photographer - Les données du photographe à afficher.
+ * @returns {void}
+ */
 const displayPhotographer = async (photographer) => {
     const photographerSection = document.querySelector(".photograph-header");
     const photographerTemplate = new PhotographerTemplate(photographer);
@@ -81,15 +88,16 @@ const displayPhotographer = async (photographer) => {
     }
 };
 
-// Fonction d'initialisation
+/**
+ * Initialise l'application en récupérant les données du photographe depuis l'API
+ * et en affichant ces données.
+ * @returns {void}
+ */
 async function init() {
     try {
-        // Récupération des données du photographe depuis l'API
-        const photographerApi = new PhotographerApi('./../../data/photographers.json');
-        const photographers = await photographerApi.getPhotographers();
+        const photographers = await PhotographerApi.getPhotographers('./../../data/photographers.json');
         const photographerData = photographers['photographers'].find((photographer) => photographer.id === parseInt(id));
 
-        // Vérification si le photographe existe
         if (photographerData) {
             // Création du modèle de photographe et récupération de ses médias
             const photographerModel = new PhotographerModel(photographerData);
@@ -104,7 +112,6 @@ async function init() {
     } catch (error) {
         console.error("An error occurred during initialization:", error);
     }
-};
+}
 
-// Appel de la fonction d'initialisation au chargement de la page
 init();

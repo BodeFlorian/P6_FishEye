@@ -1,7 +1,10 @@
-// Définition de la classe de base pour tous les types de médias
 class MediaModel {
+    /**
+     * Crée une instance de MediaModel à partir des données fournies.
+     * @param {Object} data - Les données du média.
+     * @param {Object} photographer - Le photographe associé au média.
+     */
     constructor(data, photographer) {
-        // Extraction des données communes à tous les types de médias
         const { id, title, likes, date, price } = data;
         this._id = id;
         this._photographer = photographer;
@@ -11,7 +14,6 @@ class MediaModel {
         this._price = price;
     }
 
-    // Getters pour accéder aux propriétés communes à tous les types de médias
     get id() {
         return this._id;
     }
@@ -37,49 +39,50 @@ class MediaModel {
     }
 }
 
-// Classe pour représenter un média de type image
 class ImageModel extends MediaModel {
+    /**
+     * Crée une instance de ImageModel à partir des données fournies.
+     * @param {Object} data - Les données du média.
+     * @param {Object} photographer - Le photographe associé au média.
+     */
     constructor(data, photographer) {
         super(data, photographer);
         const { image } = data;
-        // Génération de l'URL de l'image en fonction du photographe et du nom du fichier
         const [firstName] = this._photographer.name.split(' ');
         this._type = "image";
         this._url = `./assets/images/${firstName}/${image}`;
     }
 
-    // Getter spécifique pour le type de média (image)
     get type() {
         return this._type;
     }
 
-    // Getter pour l'URL de l'image
     get url() {
         return this._url;
     }
 }
 
-// Classe pour représenter un média de type vidéo
 class VideoModel extends MediaModel {
+    /**
+     * Crée une instance de VideoModel à partir des données fournies.
+     * @param {Object} data - Les données du média.
+     * @param {Object} photographer - Le photographe associé au média.
+     */
     constructor(data, photographer) {
         super(data, photographer);
         const { video } = data;
-        // Génération de l'URL de la vidéo en fonction du photographe et du nom du fichier
         const [firstName] = this._photographer.name.split(' ');
         this._type = "video";
-        this._url = `./assets/images/${firstName}/${video}`;
+        this._url = `./assets/videos/${firstName}/${video}`;
     }
 
-    // Getter spécifique pour le type de média (vidéo)
     get type() {
         return this._type;
     }
 
-    // Getter pour l'URL de la vidéo
     get url() {
         return this._url;
     }
 }
 
-// Export des classes ImageModel et VideoModel
 export { ImageModel, VideoModel };
