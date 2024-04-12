@@ -23,11 +23,9 @@ const displayMedia = async (medias) => {
     medias.forEach((media) => {
         switch (media.type) {
             case "image":
-                // Création du template pour les images
                 const mediaTemplate = new MediaTemplate(media);
                 const mediaItem = mediaTemplate.getImage();
 
-                // Gestion des promesses pour le chargement des images
                 const imageElement = mediaItem.querySelector('img');
                 const promise = new Promise((resolve, reject) => {
                     imageElement.onload = resolve;
@@ -38,7 +36,17 @@ const displayMedia = async (medias) => {
                 mediaItems.push(mediaItem);
                 break;
             case "video":
-                // À implémenter : gestion des vidéos
+                const videoTemplate = new MediaTemplate(media);
+                const videoItem = videoTemplate.getVideo();
+
+                const videoElement = videoItem.querySelector('video');
+                const videoPromise = new Promise((resolve, reject) => {
+                    videoElement.onloadeddata = resolve;
+                    videoElement.onerror = reject;
+                });
+
+                promises.push(videoPromise);
+                mediaItems.push(videoItem);
                 break;
         }
     });

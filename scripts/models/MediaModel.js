@@ -73,7 +73,7 @@ class VideoModel extends MediaModel {
         const { video } = data;
         const [firstName] = this._photographer.name.split(' ');
         this._type = "video";
-        this._url = `./assets/videos/${firstName}/${video}`;
+        this._url = `./assets/images/${firstName}/${video}`;
     }
 
     get type() {
