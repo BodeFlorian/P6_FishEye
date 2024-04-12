@@ -2,6 +2,7 @@ import PhotographerModel from "../models/PhotographerModel.js";
 import PhotographerTemplate from "../templates/PhotographerTemplate.js";
 import MediaTemplate from "../templates/MediaTemplate.js";
 import { PhotographerApi } from "../api/Api.js";
+import Lightbox from "../utils/Lightbox.js";
 
 const params = new URL(document.location).searchParams;
 const id = params.get("id");
@@ -53,7 +54,7 @@ const displayMedia = async (medias) => {
     existingMedia.forEach(media => media.remove());
 
     const promises = [];
-    const mediaItems = [];
+    const mediaItems = []; //HTML Media
 
     medias.forEach((media) => {
         switch (media.type) {
@@ -92,6 +93,15 @@ const displayMedia = async (medias) => {
             skeletonCard.style.display = "none";
         });
         mediaItems.forEach((mediaItem) => {
+            mediaItem.addEventListener('click', (e) => {
+                e.preventDefault();
+                const mediaElement = e.currentTarget.querySelector('img, video');
+                if (mediaElement.tagName === 'IMG') {
+                    const lightbox = new Lightbox(mediaElement, mediaItems);
+                } else if (mediaElement.tagName === 'VIDEO') {
+                    const lightbox = new Lightbox(mediaElement, mediaItems);
+                }
+            });
             mediaSection.appendChild(mediaItem);
         });
     } catch (error) {

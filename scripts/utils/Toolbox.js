@@ -104,7 +104,7 @@ class Toolbox {
         button.className = className;
         button.textContent = textContent;
         button.setAttribute('aria-label', ariaLabel);
-        button.onclick = displayModal; // Assumed that displayModal is defined elsewhere
+        button.onclick = displayModal;
         return button;
     }
 
