@@ -35,9 +35,9 @@ class Lightbox {
         section.innerHTML =
         `
             <section class="lightbox">
-              <button class="lightbox__close" name="close" aria-label="close"></button>
-              <button class="lightbox__next" name="next" aria-label="next"></button>
-              <button class="lightbox__prev" name="prev" aria-label="prev"></button>
+              <button class="lightbox__close" name="close" aria-label="Close dialog"></button>
+              <button class="lightbox__next" name="next" aria-label="Next image"></button>
+              <button class="lightbox__prev" name="prev" aria-label="Previous image"></button>
               <div class="lightbox__container"></div>
             </section>
         `;
