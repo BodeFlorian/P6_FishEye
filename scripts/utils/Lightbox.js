@@ -24,18 +24,21 @@ class Lightbox {
 
     /**
      * Initialise les éléments DOM de la lightbox.
-     * @private
      */
     #initializeDOMElements() {
+        const otherElements = document.querySelectorAll('body > *:not(section.lightbox)');
+        otherElements.forEach(element => {
+            element.style.visibility = 'hidden';
+        });
+
         const section = document.createElement('section');
         section.innerHTML =
         `
             <section class="lightbox">
-              <button class="lightbox__close" name="close"></button>
-              <button class="lightbox__next" name="next"></button>
-              <button class="lightbox__prev" name="prev"></button>
-              <div class="lightbox__container">
-              </div>
+              <button class="lightbox__close" name="close" aria-label="close"></button>
+              <button class="lightbox__next" name="next" aria-label="next"></button>
+              <button class="lightbox__prev" name="prev" aria-label="prev"></button>
+              <div class="lightbox__container"></div>
             </section>
         `;
 
@@ -56,7 +59,6 @@ class Lightbox {
 
     /**
      * Met à jour les éléments de la lightbox avec le média actuel.
-     * @private
      */
     #updateMedia() {
         this.lightboxContainer.innerHTML = '';
@@ -73,17 +75,16 @@ class Lightbox {
             const img = document.createElement('img');
             img.src = currentGalleryItem.src;
             img.alt = currentGalleryItem.alt;
-            const p = document.createElement('p');
-            p.innerText = currentGalleryItem.alt;
+            const h3 = document.createElement('h3');
+            h3.innerText = currentGalleryItem.alt;
             this.lightboxContainer.appendChild(img);
-            this.lightboxContainer.appendChild(p);
+            this.lightboxContainer.appendChild(h3);
         }
     }
 
 
     /**
      * Affiche le média suivant dans la lightbox.
-     * @returns {void}
      */
     showNextMedia() {
         this._currentIndex = (this._currentIndex + 1) % this._gallery.length;
@@ -92,7 +93,6 @@ class Lightbox {
 
     /**
      * Affiche le média précédent dans la lightbox.
-     * @returns {void}
      */
     showPreviousMedia() {
         this._currentIndex = (this._currentIndex - 1 + this._gallery.length) % this._gallery.length;
@@ -101,9 +101,13 @@ class Lightbox {
 
     /**
      * Ferme la lightbox en supprimant son élément DOM parent.
-     * @returns {void}
      */
     closeLightbox() {
+        const otherElements = document.querySelectorAll('body > *:not(section.lightbox)');
+        otherElements.forEach(element => {
+            element.style.visibility = 'visible';
+        });
+
         this.lightboxContainer.parentNode.remove();
     }
 }

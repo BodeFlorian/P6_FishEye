@@ -116,6 +116,7 @@ class Toolbox {
      */
     static createMediaElementDOM(tagName, media) {
         const article = Toolbox.createArticle("media-card", "Open the lightbox");
+        article.tabIndex = 0;
 
         const mediaElement = document.createElement(tagName);
         mediaElement.src = media.url;
@@ -125,10 +126,10 @@ class Toolbox {
         mediaElement.className = "media-card__img";
 
         const div = Toolbox.createDivElement("media-card__content");
-        const h4 = Toolbox.createHeadingElement("h4", "media-card__title", media.title);
+        const title = Toolbox.createParagraphElement("media-card__title", media.title);
         const p = Toolbox.createParagraphElement("media-card__like", media.likes);
 
-        div.appendChild(h4);
+        div.appendChild(title);
         div.appendChild(p);
         article.appendChild(mediaElement);
         article.appendChild(div);
