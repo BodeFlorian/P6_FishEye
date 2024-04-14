@@ -1,4 +1,4 @@
-import { ImageModel, VideoModel } from "./../models/MediaModel.js";
+import { ImageModel, VideoModel } from "./../models/MediaModel";
 
 class MediaFactory {
     /**

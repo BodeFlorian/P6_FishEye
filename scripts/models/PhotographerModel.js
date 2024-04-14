@@ -1,5 +1,5 @@
-import { PhotographerApi } from "../api/Api.js";
-import MediaFactory from "./../factories/MediaFactory.js";
+import { PhotographerApi } from "../api/Api";
+import MediaFactory from "./../factories/MediaFactory";
 
 class PhotographerModel {
     /**
