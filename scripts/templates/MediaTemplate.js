@@ -1,4 +1,4 @@
-import Toolbox from './../utils/Toolbox';
+import Toolbox from './../utils/Toolbox.js';
 
 class MediaTemplate {
     /**

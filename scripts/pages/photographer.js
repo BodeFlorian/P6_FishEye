@@ -1,8 +1,8 @@
-import PhotographerModel from "../models/PhotographerModel";
-import PhotographerTemplate from "../templates/PhotographerTemplate";
-import MediaTemplate from "../templates/MediaTemplate";
-import { PhotographerApi } from "../api/Api";
-import Lightbox from "../utils/Lightbox";
+import PhotographerModel from "../models/PhotographerModel.js";
+import PhotographerTemplate from "../templates/PhotographerTemplate.js";
+import MediaTemplate from "../templates/MediaTemplate.js";
+import { PhotographerApi } from "../api/Api.js";
+import Lightbox from "../utils/Lightbox.js";
 
 const params = new URL(document.location).searchParams;
 const id = params.get("id");

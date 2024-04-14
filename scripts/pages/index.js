@@ -1,6 +1,6 @@
-import PhotographerModel from "../models/PhotographerModel";
-import PhotographerTemplate from "../templates/PhotographerTemplate";
-import { PhotographerApi } from "../api/Api";
+import PhotographerModel from "../models/PhotographerModel.js";
+import PhotographerTemplate from "../templates/PhotographerTemplate.js";
+import { PhotographerApi } from "../api/Api.js";
 
 /**
  * Affiche les données des photographes en générant et en ajoutant les cartes des photographes au DOM.
