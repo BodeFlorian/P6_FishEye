@@ -1,4 +1,4 @@
-import Toolbox from './../utils/Toolbox.js';
+import Toolbox from './../utils/Toolbox';
 
 class PhotographerTemplate {
     /**
