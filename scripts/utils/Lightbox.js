@@ -34,7 +34,7 @@ class Lightbox {
         const section = document.createElement('section');
         section.innerHTML =
         `
-            <section class="lightbox">
+            <section class="lightbox" aria-label="image closeup view">
               <button class="lightbox__close" name="close" aria-label="Close dialog"></button>
               <button class="lightbox__next" name="next" aria-label="Next image"></button>
               <button class="lightbox__prev" name="prev" aria-label="Previous image"></button>
