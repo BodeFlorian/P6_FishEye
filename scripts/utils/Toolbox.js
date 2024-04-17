@@ -137,6 +137,12 @@ class Toolbox {
     article.appendChild(mediaElement);
     article.appendChild(div);
 
+    article.addEventListener('keydown', function (event) {
+      if (event.keyCode === 13) {
+        article.click();
+      }
+    });
+
     return article;
   }
 }

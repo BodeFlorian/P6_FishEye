@@ -25,9 +25,24 @@ class Lightbox {
   }
 
   /**
+   * Initialise les événements clavier pour la navigation dans la lightbox.
+   */
+  #initializeKeyboardEvents() {
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowRight') {
+        this.showNextMedia();
+      } else if (event.key === 'ArrowLeft') {
+        this.showPreviousMedia();
+      }
+    });
+  }
+
+  /**
    * Initialise les éléments DOM de la lightbox.
    */
   #initializeDOMElements() {
+    this.#initializeKeyboardEvents();
+
     const otherElements = document.querySelectorAll(
       'body > *:not(section.lightbox)',
     );
