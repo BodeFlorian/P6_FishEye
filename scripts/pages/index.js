@@ -1,6 +1,6 @@
-import PhotographerModel from "../models/PhotographerModel.js";
-import PhotographerTemplate from "../templates/PhotographerTemplate.js";
-import { PhotographerApi } from "../api/Api.js";
+import PhotographerModel from '../models/PhotographerModel.js';
+import PhotographerTemplate from '../templates/PhotographerTemplate.js';
+import { PhotographerApi } from '../api/Api.js';
 
 /**
  * Affiche les données des photographes en générant et en ajoutant les cartes des photographes au DOM.
@@ -8,14 +8,14 @@ import { PhotographerApi } from "../api/Api.js";
  * @returns {void}
  */
 const displayData = async (photographersData) => {
-    const photographersSection = document.querySelector(".photographer_section");
+  const photographersSection = document.querySelector('.photographer_section');
 
-    photographersData.forEach((photographerData) => {
-        const photographerModel = new PhotographerModel(photographerData);
-        const photographerTemplate = new PhotographerTemplate(photographerModel);
-        const userCardDOM = photographerTemplate.getUserCardDOM();
-        photographersSection.appendChild(userCardDOM);
-    });
+  photographersData.forEach((photographerData) => {
+    const photographerModel = new PhotographerModel(photographerData);
+    const photographerTemplate = new PhotographerTemplate(photographerModel);
+    const userCardDOM = photographerTemplate.getUserCardDOM();
+    photographersSection.appendChild(userCardDOM);
+  });
 };
 
 /**
@@ -24,15 +24,17 @@ const displayData = async (photographersData) => {
  * @returns {void}
  */
 async function init() {
-    try {
-        const photographers = await PhotographerApi.getPhotographers('./../../data/photographers.json');
+  try {
+    const photographers = await PhotographerApi.getPhotographers(
+      './../../data/photographers.json',
+    );
 
-        if (photographers) {
-            displayData(photographers['photographers']);
-        }
-    } catch (error) {
-        console.error("An error occurred during initialization:", error);
+    if (photographers) {
+      displayData(photographers['photographers']);
     }
+  } catch (error) {
+    console.error('An error occurred during initialization:', error);
+  }
 }
 
 init();

@@ -30,16 +30,16 @@
   height: 200px;
   width: 200px;
   -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
   border-radius: 50%;
 }
 .photographer_section .card__title {
-  color: #D3573C;
+  color: #d3573c;
   font-size: 32px;
   font-weight: 400;
 }
 .photographer_section .card__location {
-  color: #901C1C;
+  color: #901c1c;
   font-size: 16px;
   font-weight: 400;
 }
@@ -49,4 +49,4 @@
 .photographer_section .card__price {
   color: #757575;
   font-size: 12px;
-}/*# sourceMappingURL=index.css.map */
+} /*# sourceMappingURL=index.css.map */

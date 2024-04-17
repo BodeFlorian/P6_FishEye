@@ -6,7 +6,7 @@
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: 'DM Sans', sans-serif;
   padding: 0 64px;
   max-width: 1700px;
   margin: auto;
@@ -15,4 +15,4 @@ body {
 a {
   text-decoration: none;
   color: unset;
-}/*# sourceMappingURL=style.css.map */
+} /*# sourceMappingURL=style.css.map */

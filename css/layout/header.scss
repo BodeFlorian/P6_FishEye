@@ -1,16 +1,16 @@
-header{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    height: 90px;
-    padding: 64px 96px;
+header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 90px;
+  padding: 64px 96px;
 
-    .logo{
-        height: 50px;
-    }
+  .logo {
+    height: 50px;
+  }
 
-    h1{
-        color: #901C1C;
-    }
+  h1 {
+    color: #901c1c;
+  }
 }
