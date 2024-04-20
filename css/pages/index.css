@@ -30,7 +30,7 @@
   height: 200px;
   width: 200px;
   -o-object-fit: cover;
-  object-fit: cover;
+     object-fit: cover;
   border-radius: 50%;
 }
 .photographer_section .card__title {
@@ -49,4 +49,4 @@
 .photographer_section .card__price {
   color: #757575;
   font-size: 12px;
-} /*# sourceMappingURL=index.css.map */
+}/*# sourceMappingURL=index.css.map */
