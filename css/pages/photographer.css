@@ -186,10 +186,6 @@ form #message {
   height: 20px;
   margin-top: -1px;
 }
-.photograph-media .media .media-card:hover {
-  transform: scale(1.02);
-  transition: transform 0.3s ease;
-}
 .photograph-media .media .skeleton-card {
   width: 100%;
   height: 100%;
@@ -273,6 +269,33 @@ form #message {
   font-size: 24px;
   font-weight: 800;
   color: #901c1c;
+}
+
+.data-container {
+  position: sticky;
+  bottom: 0;
+  left: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  background-color: #DB8876;
+  padding: 8px 16px;
+  border-radius: 4px 4px 0px 0px;
+  width: -moz-fit-content;
+  width: fit-content;
+  cursor: default;
+}
+.data-container__likes {
+  position: relative;
+  display: flex;
+  gap: 4px;
+}
+.data-container__likes::after {
+  content: "";
+  background-image: url("./../../assets/icons/heart.svg");
+  width: 20px;
+  height: 20px;
+  margin-top: -1px;
 }
 
 @keyframes pulse {

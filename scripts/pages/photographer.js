@@ -101,9 +101,9 @@ const displayMedia = async (medias) => {
         e.preventDefault();
         const mediaElement = e.currentTarget.querySelector('img, video');
         if (mediaElement.tagName === 'IMG') {
-          const lightbox = new Lightbox(mediaElement, mediaItems);
+          new Lightbox(mediaElement, mediaItems);
         } else if (mediaElement.tagName === 'VIDEO') {
-          const lightbox = new Lightbox(mediaElement, mediaItems);
+          new Lightbox(mediaElement, mediaItems);
         }
       });
       mediaSection.appendChild(mediaItem);
@@ -122,6 +122,7 @@ const displayPhotographer = async (photographer) => {
   const photographerSection = document.querySelector('.photograph-header');
   const photographerTemplate = new PhotographerTemplate(photographer);
   const userBannerDOM = photographerTemplate.getUserBannerDOM();
+  const userDataDom = photographerTemplate.getUserDataDOM();
   const skeletonBanner = document.querySelector('.skeleton-banner');
 
   const elementsPresent =
@@ -135,10 +136,7 @@ const displayPhotographer = async (photographer) => {
     if (elementsPresent) {
       skeletonBanner.remove();
       photographerSection.appendChild(userBannerDOM);
-    } else {
-      console.warn(
-        'Some elements are missing in userBannerDOM. Check getUserBannerDOM implementation.',
-      );
+      document.querySelector('body').appendChild(userDataDom);
     }
   } catch (error) {
     console.error('An error occurred while loading photographer data:', error);

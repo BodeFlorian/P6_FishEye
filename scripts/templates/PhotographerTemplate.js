@@ -98,6 +98,27 @@ class PhotographerTemplate {
 
     return banner;
   }
+
+  /**
+   * Génère et retourne la bannière data de l'utilisateur (utilisée sur la page du photographe).
+   * @returns {HTMLElement} - La bannière data de l'utilisateur DOM.
+   */
+  getUserDataDOM() {
+    const data = Toolbox.createDivElement('data-container');
+    const like = Toolbox.createParagraphElement(
+      'data-container__likes',
+      this._photographer.like,
+    );
+    const price = Toolbox.createParagraphElement(
+      'data-container__price',
+      `${this._photographer.price}€/jour`,
+    );
+
+    data.appendChild(like);
+    data.appendChild(price);
+
+    return data;
+  }
 }
 
 export default PhotographerTemplate;

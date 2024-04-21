@@ -15,6 +15,7 @@ class PhotographerModel {
     this._country = country;
     this._tagline = tagline;
     this._price = price;
+    this._like = 0;
   }
 
   /**
@@ -74,6 +75,14 @@ class PhotographerModel {
   }
 
   /**
+   * Obtient le nombre de like du photographe.
+   * @returns {number} Le nombre de like du photographe.
+   */
+  get like() {
+    return this._like;
+  }
+
+  /**
    * Récupère les médias associés à ce photographe.
    * @returns {Array} Un tableau contenant les médias associés au photographe.
    */
@@ -86,6 +95,7 @@ class PhotographerModel {
         (media) => media.photographerId === this._id,
       );
       const mediaObjects = mediaData.map((mediaItem) => {
+        this._like += mediaItem.likes;
         return MediaFactory.createMedia(mediaItem, this);
       });
       return mediaObjects;
