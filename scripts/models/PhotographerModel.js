@@ -82,6 +82,10 @@ class PhotographerModel {
     return this._like;
   }
 
+  addLike() {
+    this._like += 1;
+  }
+
   /**
    * Récupère les médias associés à ce photographe.
    * @returns {Array} Un tableau contenant les médias associés au photographe.

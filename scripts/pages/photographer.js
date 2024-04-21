@@ -97,13 +97,12 @@ const displayMedia = async (medias) => {
       skeletonCard.style.display = 'none';
     });
     mediaItems.forEach((mediaItem) => {
-      mediaItem.addEventListener('click', (e) => {
+      mediaItem.querySelector('img, video').addEventListener('click', (e) => {
         e.preventDefault();
-        const mediaElement = e.currentTarget.querySelector('img, video');
-        if (mediaElement.tagName === 'IMG') {
-          new Lightbox(mediaElement, mediaItems);
-        } else if (mediaElement.tagName === 'VIDEO') {
-          new Lightbox(mediaElement, mediaItems);
+        if (e.currentTarget.tagName === 'IMG') {
+          new Lightbox(e.currentTarget, mediaItems);
+        } else if (e.currentTarget.tagName === 'VIDEO') {
+          new Lightbox(e.currentTarget, mediaItems);
         }
       });
       mediaSection.appendChild(mediaItem);

@@ -30,6 +30,11 @@ class MediaModel {
     return this._likes;
   }
 
+  addLike() {
+    this._likes += 1;
+    this._photographer.addLike();
+  }
+
   get date() {
     return this._date;
   }

@@ -5,10 +5,12 @@ class Toolbox {
    * @param {string} ariaLabel - La valeur de l'attribut aria-label.
    * @returns {HTMLArticleElement} - L'élément article créé.
    */
-  static createArticle(className, ariaLabel) {
+  static createArticle(className, ariaLabel = '') {
     const article = document.createElement('article');
     article.className = className;
-    article.ariaLabel = ariaLabel;
+    if (ariaLabel.length > 0) {
+      article.ariaLabel = ariaLabel;
+    }
     return article;
   }
 
@@ -115,8 +117,7 @@ class Toolbox {
    * @returns {HTMLElement} - L'élément DOM créé.
    */
   static createMediaElementDOM(tagName, media) {
-    const article = Toolbox.createArticle('media-card', 'Open the lightbox');
-    article.tabIndex = 0;
+    const article = Toolbox.createArticle('media-card');
 
     const mediaElement = document.createElement(tagName);
     mediaElement.src = media.url;
@@ -124,22 +125,40 @@ class Toolbox {
       mediaElement.alt = media.title;
     }
     mediaElement.className = 'media-card__img';
+    mediaElement.ariaLabel = 'Open the Lightbox';
+    mediaElement.tabIndex = 0;
 
     const div = Toolbox.createDivElement('media-card__content');
     const title = Toolbox.createParagraphElement(
       'media-card__title',
       media.title,
     );
+
     const p = Toolbox.createParagraphElement('media-card__like', media.likes);
+    p.tabIndex = 0;
 
     div.appendChild(title);
     div.appendChild(p);
     article.appendChild(mediaElement);
     article.appendChild(div);
 
-    article.addEventListener('keydown', function (event) {
+    p.addEventListener('click', function (event) {
+      event.preventDefault();
+      media.addLike();
+      p.textContent = media.likes;
+      document.querySelector('.data-container__likes').textContent =
+        media.photographer.like;
+    });
+
+    p.addEventListener('keydown', function (event) {
       if (event.keyCode === 13) {
-        article.click();
+        p.click();
+      }
+    });
+
+    mediaElement.addEventListener('keydown', function (event) {
+      if (event.keyCode === 13) {
+        p.click();
       }
     });
 
