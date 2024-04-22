@@ -12,6 +12,7 @@ class MediaModel {
     this._likes = likes;
     this._date = date;
     this._price = price;
+    this._isLike = false;
   }
 
   get id() {
@@ -26,12 +27,17 @@ class MediaModel {
     return this._title;
   }
 
+  get isLike() {
+    return this._isLike;
+  }
+
   get likes() {
     return this._likes;
   }
 
   addLike() {
     this._likes += 1;
+    this._isLike = true;
     this._photographer.addLike();
   }
 

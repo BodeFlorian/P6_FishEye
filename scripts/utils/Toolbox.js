@@ -144,10 +144,12 @@ class Toolbox {
 
     p.addEventListener('click', function (event) {
       event.preventDefault();
-      media.addLike();
-      p.textContent = media.likes;
-      document.querySelector('.data-container__likes').textContent =
-        media.photographer.like;
+      if (!media.isLike) {
+        media.addLike();
+        p.textContent = media.likes;
+        document.querySelector('.data-container__likes').textContent =
+          media.photographer.like;
+      }
     });
 
     p.addEventListener('keydown', function (event) {
